@@ -1,5 +1,6 @@
 import Header from "./Components/Header";
-import Posts from "./Components/Posts";
+import Post from "./Components/Post";
+
 import Searchbar from "./Components/Searchbar";
 
 
@@ -9,7 +10,7 @@ function Home(){
         <Header/>
         <div className="md:container md:mx-auto pt-10">
         <Searchbar/>
-            <Posts/>
+        <Post/>
         </div>
        
     </>

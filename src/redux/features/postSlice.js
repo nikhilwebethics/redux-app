@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
- export const getPosts = createAsyncThunk("posts/getPosts", async () => {
-     return fetch("https://renemorozowich.com/wp-json/wp/v2/posts?filter[posts_per_page]=10&page=1&_embed").then((res) => 
-     res.json()
+ export const getPosts = createAsyncThunk("posts/getPosts", async ({page},{perPage}) => {
+     
+    return fetch(`https://renemorozowich.com/wp-json/wp/v2/posts?filter[posts_per_page]=${perPage}&page=${page}&_embed`).then((res) => 
+    res.json()
   );
  })
 
@@ -15,6 +16,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
      extraReducers:{
          [getPosts.pending]: (state, action) => {
              state.loading = true;
+             
          },
          [getPosts.fulfilled]: (state, action) => {
             state.loading = false;
@@ -23,6 +25,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
          [getPosts.rejected]: (state, action) => {
              state.loading = false;
          },
+ 
     },
  }));
 
